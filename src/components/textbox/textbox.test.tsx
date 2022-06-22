@@ -18,16 +18,13 @@ describe(`Textbox`, () => {
     const textbox = screen.getByPlaceholderText("Test");
     expect(textbox.tagName).toEqual('INPUT');
   });
+})
 
-  it(`should render a multiline input`, () => {
-    render(<Textbox multiline placeholder="Test" />, { wrapper });
-
-    expect(screen.getByPlaceholderText("Test")).toHaveStyle(`height: 100%;`);
-  });
-
-  it(`should render a single-line input`, () => {
+describe(`MultilineTextbox`, () => {
+  it(`should render an textarea component`, () => {
     render(<Textbox placeholder="Test" />, { wrapper });
 
-    expect(screen.getByPlaceholderText("Test")).toHaveStyle(`height: 40px;`);
+    const textbox = screen.getByPlaceholderText("Test");
+    expect(textbox.tagName).toEqual('TEXTAREA');
   });
-})
+});

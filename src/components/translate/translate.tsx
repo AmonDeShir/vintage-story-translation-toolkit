@@ -1,7 +1,7 @@
 import { Button } from "../button/button";
 import { Container } from "../container/container";
 import { Buttons } from "../layout/layout";
-import { Textbox } from "../textbox/textbox";
+import { MultilineTextbox } from "../textbox/textbox";
 import { Title } from "../title/title";
 import { Size, Text, Translation } from "./translate.styles";
 
@@ -16,9 +16,8 @@ export const Translate = () => {
         </Text>
 
         <Translation>
-          <Textbox
+          <MultilineTextbox
             placeholder="Translation"
-            multiline
           />
         </Translation>
 

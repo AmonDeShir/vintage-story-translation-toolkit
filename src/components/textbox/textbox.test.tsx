@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Textbox } from "./textbox";
+import { MultilineTextbox, Textbox } from "./textbox";
 import { theme } from "../../theme/theme";
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "@emotion/react";
@@ -22,7 +22,7 @@ describe(`Textbox`, () => {
 
 describe(`MultilineTextbox`, () => {
   it(`should render an textarea component`, () => {
-    render(<Textbox placeholder="Test" />, { wrapper });
+    render(<MultilineTextbox placeholder="Test" />, { wrapper });
 
     const textbox = screen.getByPlaceholderText("Test");
     expect(textbox.tagName).toEqual('TEXTAREA');

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { dictionaryReducer } from './slices/dictionary'
+import { dictionaryReducer } from './slices/dictionary/dictionary.slice'
 
 export const store = configureStore({
   reducer: {

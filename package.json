@@ -57,6 +57,9 @@
       "<rootDir>/src/app/app.tsx",
       "<rootDir>/src/app/app.styles.ts",
       "<rootDir>/src/store/store.ts"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@tauri-apps/api/tauri)/"
     ]
   }
 }

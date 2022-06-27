@@ -8,6 +8,7 @@ export const Items = styled.div<ItemsProps>`
   --subtractHeight: ${({ subtractHeight = "0px" }) => subtractHeight};
   height: calc(100% - var(--subtractHeight));
   padding: 12px;
+  overflow-y: scroll;
 `;
 
 export const Buttons = styled.div`

@@ -38,6 +38,74 @@ describe(`dictionaryReducer`, () => {
     });
   })
 
+  describe(`rename`, () => {
+    const document = {
+      id: "test_id",
+      name: "test",
+      words: []
+    }
+
+    it(`should rename the document name`, () => {
+      const state = { 
+        words: [], 
+        documents: [document] 
+      };
+
+      expect(dictionaryReducer(state, { type: 'dictionary/rename', payload: { id: "test_id", name: "new_name" }})).toEqual({
+        words: [],
+        documents: [{
+          id: "test_id",
+          name: "new_name",
+          words: []
+        }]
+      });
+    })
+
+    it(`shouldn't rename the document if it not exist`, () => {
+      const state = { 
+        words: [], 
+        documents: [document] 
+      };
+
+      expect(dictionaryReducer(state, { type: 'dictionary/rename', payload: { id: "not_exist", name: "new_name" }})).toEqual({
+        words: [],
+        documents: [document]
+      });
+    })
+  })
+
+  describe(`remove`, () => {
+    const document = {
+      id: "test_id",
+      name: "test",
+      words: []
+    }
+
+    it(`should remove the document`, () => {
+      const state = { 
+        words: [], 
+        documents: [document] 
+      };
+
+      expect(dictionaryReducer(state, { type: 'dictionary/remove', payload: "test_id" })).toEqual({
+        words: [],
+        documents: []
+      });
+    })
+
+    it(`shouldn't remove the document if it not exist`, () => {
+      const state = { 
+        words: [], 
+        documents: [document] 
+      };
+
+      expect(dictionaryReducer(state, { type: 'dictionary/remove', payload: "not_exist" })).toEqual({
+        words: [],
+        documents: [document]
+      });
+    })
+  })
+
   describe(`dictionary/loadDictionaryFile/fulfilled`, () => {
     it(`should loaded data to the state`, () => {
       let i = 0;

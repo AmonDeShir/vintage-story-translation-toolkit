@@ -10,5 +10,6 @@ export const theme = {
     big: "25px",
     normal: "20px",
     small: "18px",
+    smaller: "12px",
   }
 }

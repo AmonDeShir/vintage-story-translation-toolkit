@@ -66,9 +66,10 @@ export const DictionaryHeader = ({ children, name, onRemove, onRenamed }: Header
 type ItemProps = {
   source: string;
   translation: string;
+  onClick?: () => void;
 }
 
-export const DictionaryItem = ({ source, translation }: ItemProps) => {
+export const DictionaryItem = ({ source, translation, onClick }: ItemProps) => {
   const [hidden, setHidden] = useState(true);
   const maxWidth = 25;
   const isLong = useMemo(() => source.length >= maxWidth || translation.length >= maxWidth, [source.length, translation.length])
@@ -78,15 +79,15 @@ export const DictionaryItem = ({ source, translation }: ItemProps) => {
     const textB = hidden ? `${translation.slice(0, maxWidth)}...` : translation; 
 
     return (
-      <div onDoubleClick={() => setHidden((s) => !s)}>
+      <div onClick={onClick} onDoubleClick={() => setHidden((s) => !s)}>
         <b>{textA}</b> - {textB} <br/>
       </div>
     );
   }
 
   return (
-    <>
-      <b>{source}</b> - {translation}<br/>
-    </>
+    <div onClick={onClick}>
+      <b>{source}</b> - {translation}
+    </div>
   );
 }

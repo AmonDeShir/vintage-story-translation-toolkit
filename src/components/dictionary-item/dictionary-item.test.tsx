@@ -54,7 +54,34 @@ describe(`DictionaryItem`, () => {
 
     expect(screen.getByText("AAAAAAAAAAAAAAAAAAAATest ...")).toBeInTheDocument();
     expect(screen.getByText("- BBBBBBBBBBBBBBBBBBBBTest ...")).toBeInTheDocument();
-  })
+  });
+
+  it(`should call the onClick handler when is clicked and the long mod is disabled`, async () => {
+    const onClick = jest.fn();
+    render(<DictionaryItem source={"item A"} translation={"Item B"} onClick={onClick} />);
+
+    fireEvent.click(await screen.findByText(`item A`));
+
+    expect(onClick).toBeCalledTimes(1);
+  });
+
+  it(`should call the onClick handler when is clicked and the long mod is enabled`, async () => {
+    const onClick = jest.fn();
+
+    let testA = "Test 1";
+    let testB = "Test 2"
+    
+    for (let i = 0; i < 20; i++) {
+      testA = `A${testA}`;
+      testB = `B${testB}`;
+    }
+
+    render(<DictionaryItem source={testA} translation={testB} onClick={onClick} />);
+
+    fireEvent.click(await screen.findByText(`AAAAAAAAAAAAAAAAAAAATest ...`));
+
+    expect(onClick).toBeCalledTimes(1);
+  });
 });
 
 
@@ -153,5 +180,5 @@ describe(`DictionaryHeader`, () => {
 
     expect(onRenamed).toBeCalledTimes(1);
     expect(onRenamed).toBeCalledWith("New value");
-  })
+  });
 });

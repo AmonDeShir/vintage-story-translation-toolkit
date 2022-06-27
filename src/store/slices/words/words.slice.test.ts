@@ -74,8 +74,209 @@ describe(`wordsReducer`, () => {
         selected: undefined
       });
     })
-  })
+  });
 
+  describe('selectPrevious', () => {
+    it(`should select previous item`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: "word_2",
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectPrevious' })).toEqual({
+        words: state.words,
+        selected: "word_1"
+      });
+    });
+
+    it(`shouldn't select previous item if the selected is the first one`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: "word_1",
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectPrevious' })).toEqual({
+        words: state.words,
+        selected: "word_1"
+      });
+    });
+
+    it(`shouldn't select previous item if the selected item is undefined`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: undefined,
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectPrevious' })).toEqual({
+        words: state.words,
+        selected: undefined
+      });
+    })
+  });
+
+  describe('selectNext', () => {
+    it(`should select next item`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: "word_1",
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectNext' })).toEqual({
+        words: state.words,
+        selected: "word_2"
+      });
+    });
+
+    it(`shouldn't select next item if the selected is the last one`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: "word_2",
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectNext' })).toEqual({
+        words: state.words,
+        selected: "word_2"
+      });
+    });
+
+    it(`shouldn't select next item if the selected item is undefined`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+          {
+            id: "word_2",
+            key: "test_key_2",
+            source: "source 2",
+            translation: "translation 2"
+          },
+        ],
+        selected: undefined,
+      };
+
+      expect(wordsReducer(state, { type: 'words/selectNext' })).toEqual({
+        words: state.words,
+        selected: undefined
+      });
+    })
+  });
+
+  describe('translate', () => {
+    it(`should edit the translation of the item`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+        ],
+        selected: undefined,
+      };
+
+      expect(wordsReducer(state, { type: 'words/translate', payload: { id: "word_1", translation: "fixed translation" }})).toEqual({
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "fixed translation"
+          },
+        ],
+        selected: undefined
+      });
+    });
+
+    it(`shouldn't translate an item that not exist`, () => {
+      const state = { 
+        words: [
+          {
+            id: "word_1",
+            key: "test_key_1",
+            source: "source 1",
+            translation: "translation 1"
+          },
+        ],
+        selected: undefined,
+      };
+
+      expect(wordsReducer(state, { type: 'words/translate', payload: { id: "not_exist", translation: "fixed translation" }})).toEqual({
+        words: state.words,
+        selected: undefined
+      });
+    });
+  });
+  
   describe(`words/loadWordsFile/fulfilled`, () => {
     it(`should loaded data to the state`, () => {
       let i = 0;

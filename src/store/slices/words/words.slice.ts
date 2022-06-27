@@ -55,7 +55,48 @@ export const wordsSlice = createSlice({
       }
 
       state.selected = id;
-    }
+    },
+
+    selectNext: (state => {
+      if (state.selected === undefined) {
+        return;
+      }
+      
+      const index = state.words.findIndex(({ id }) => id === state.selected);
+      const word = state.words[index+1];
+
+      if (!word) {
+        return
+      }
+
+      state.selected = word.id;
+    }),
+
+    selectPrevious: (state => {
+      if (state.selected === undefined) {
+        return;
+      }
+      
+      const index = state.words.findIndex(({ id }) => id === state.selected);
+      const word = state.words[index-1];
+
+      if (!word) {
+        return
+      }
+
+      state.selected = word.id;
+    }),
+
+    translate: (state, action: PayloadAction<{ id: string, translation: string }>) => {
+      const { id, translation } = action.payload;
+      const word = state.words.find(word => word.id === id);
+
+      if (!word) {
+        return;
+      }
+
+      word.translation = translation;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadWordsFile.fulfilled, (state, action) => {
@@ -71,4 +112,4 @@ export const wordsSlice = createSlice({
 });
 
 export const wordsReducer = wordsSlice.reducer;
-export const { select } = wordsSlice.actions;
+export const { select, selectNext, selectPrevious, translate } = wordsSlice.actions;

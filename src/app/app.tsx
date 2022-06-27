@@ -1,5 +1,5 @@
 import { Dictionary } from "../components/dictionary/dictionary";
-import { Translate } from "../components/translate/translate";
+import { TranslationEditor } from "../components/translation-editor/translation-editor";
 import { Words } from "../components/words/words";
 import { Background, Tool } from "./app.styles";
 
@@ -9,7 +9,7 @@ export const App = () => (
       <Words />
     </Tool>
     
-    <Translate />
+    <TranslationEditor />
 
     <Tool side="right">
       <Dictionary />

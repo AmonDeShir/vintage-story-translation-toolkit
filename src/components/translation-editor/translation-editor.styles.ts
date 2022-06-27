@@ -14,9 +14,10 @@ export const Text = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 `;
 
-export const Translation = styled.div`
+export const Editor = styled.div`
   height: calc(50% - 30px);
   width: 100%;
 `;

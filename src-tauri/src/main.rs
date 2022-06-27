@@ -4,6 +4,7 @@
 )]
 
 mod dictionary;
+mod json;
 
 fn main() {
   let context = tauri::generate_context!();

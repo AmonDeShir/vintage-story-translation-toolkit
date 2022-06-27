@@ -1,6 +1,8 @@
 use std::{collections::HashMap, path::PathBuf};
 use tauri::api::dialog::blocking::{FileDialogBuilder};
 
+use crate::json::json_loader;
+
 
 #[derive(Clone)]
 struct Files {
@@ -15,21 +17,15 @@ pub struct Entity {
   translation: String
 }
 
+
 pub async fn load_dictionary_file() -> Vec<Entity> {
   let files = match load_files().await {
     Option::Some(data) => data,
     _ => return Vec::new()
   };
 
-  let source: HashMap<String, String> = match serde_json::from_str(&files.source) {
-    Ok(data) => data,
-    _ => return Vec::new()    
-  };
-
-  let translation: HashMap<String, String> = match serde_json::from_str(&files.translation) {
-    Ok(data) => data,
-    _ => return Vec::new()  
-  };
+  let source: HashMap<String, String> = json_loader(&files.source);
+  let translation: HashMap<String, String> = json_loader(&files.translation);
 
   return match_data(source, translation);
 }

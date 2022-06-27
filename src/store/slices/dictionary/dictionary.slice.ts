@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit'
 import { invoke } from '@tauri-apps/api/tauri'
-import { CommandWord, Document, Word } from '../dictionary.types';
+import { CommandWord, Document, Word } from './dictionary.types';
 
-interface DictionaryState {
+export interface DictionaryState {
   words: Word[];
   documents: Document[];
 }
@@ -27,7 +27,23 @@ export const loadDictionaryFile = createAsyncThunk(
 export const dictionarySlice = createSlice({
   name: 'dictionary',
   initialState,
-  reducers: {},
+  reducers: {
+    rename: (state, action: PayloadAction<{ id: string, name: string }>) => {
+      const { name, id } = action.payload;
+      
+      const document = state.documents.find((document) => document.id === id);
+
+      if (document) {
+        document.name = name;
+      }
+    },
+    
+    remove: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+
+      state.documents = state.documents.filter((document) => document.id !== id);
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(loadDictionaryFile.fulfilled, (state, action) => {
       const words = action.payload.map((word) => ({
@@ -47,4 +63,5 @@ export const dictionarySlice = createSlice({
 });
 
 
+export const { remove, rename } = dictionarySlice.actions;
 export const dictionaryReducer = dictionarySlice.reducer;

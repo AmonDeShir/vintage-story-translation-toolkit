@@ -21,12 +21,10 @@ const commandWords = [
   {
     key: "test_key_1",
     source: "source 1",
-    translation: "translation 1"
   },
   {
     key: "test_key_2",
     source: "source 2",
-    translation: "translation 2"
   }
 ]
 
@@ -90,13 +88,13 @@ describe(`wordsReducer`, () => {
             id: "id_1",
             key: "test_key_1",
             source: "source 1",
-            translation: "translation 1"
+            translation: ""
           },
           {
             id: "id_2",
             key: "test_key_2",
             source: "source 2",
-            translation: "translation 2"
+            translation: ""
           }
         ],
       });
@@ -129,12 +127,10 @@ describe(`loadWordsFile`, () => {
         {
           key: "test_key_1",
           source: "source 1",
-          translation: "translation 1"
         },
         {
           key: "test_key_2",
           source: "source 2",
-          translation: "translation 2"
         }
       ],
     });

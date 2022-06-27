@@ -61,6 +61,7 @@ export const wordsSlice = createSlice({
     builder.addCase(loadWordsFile.fulfilled, (state, action) => {
       const words = action.payload.map((word) => ({
         ...word,
+        translation: "",
         id: nanoid()
       }));
 

@@ -1,4 +1,4 @@
-export type CommandWord = Omit<Word, "id">;
+export type CommandWord = Omit<Word, "id" | "translation">;
 
 export type Word = {
   id: string;

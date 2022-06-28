@@ -1,6 +1,9 @@
 {
   "name": "vintage-story-translation-toolkit",
   "version": "0.1.0",
+  "author": "Amon De Shir",
+  "license": "LGPL",
+  "repository": "https://github.com/AmonDeShir/vintage-story-translation-toolkit",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",

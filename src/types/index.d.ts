@@ -12,6 +12,7 @@ declare module '@emotion/react' {
       big: string;
       normal: string;
       small: string;
+      smaller: string;
     }
   }
 }

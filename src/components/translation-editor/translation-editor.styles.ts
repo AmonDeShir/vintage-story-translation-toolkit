@@ -27,7 +27,6 @@ export const Text = styled.p<TextProps>`
   --other-items: ${({ full }) => full ? "40px" : "60px"};
   --size: ${({ full }) => full ? "100%" : "50%"};
 
-
   height: calc(var(--size) - var(--other-items));
   width: 100%;
   margin: 0;

@@ -29,8 +29,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
-      "longDescription": "",
+      "identifier": "pl.AmonDeShir.dev",
+      "longDescription": "A tool created to simplify the translation process of Vintage Story mods",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -39,7 +39,7 @@
         "signingIdentity": null
       },
       "resources": [],
-      "shortDescription": "",
+      "shortDescription": "A tool for Vintage Story mods translation",
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
